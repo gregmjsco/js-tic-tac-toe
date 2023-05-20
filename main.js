@@ -19,15 +19,18 @@ const gameboard = (() => {
         //}
       //}
 
-    const getBoard = () => board;  
+    const getBoard = () => {
+      console.log(board);
+    };
 
     const placeToken = (row, column, player) => {
         //logic to place token
-    }
+    };
 
     const printBoard = () => {
         //logic to print board
-    }
+    };
+    return {getBoard, placeToken, printBoard};
 })();
 
 

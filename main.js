@@ -33,8 +33,22 @@ const gameboard = (() => {
     return {getBoard, placeToken, printBoard};
 })();
 
+function Cell(){
+  let value = 0;
 
-const displayController = (() => {
+  const addToken = (player) => {
+    value = player;
+  };
+
+  const getValue = () => value;
+
+  return {
+    addToken,
+    getValue
+  };
+}
+
+const gameController = (() => {
 
 })();
 

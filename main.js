@@ -25,6 +25,7 @@ const gameboard = (() => {
 
     const placeToken = (row, column, player) => {
         //logic to place token
+        board[row][column] = player;
     };
 
     const printBoard = () => {

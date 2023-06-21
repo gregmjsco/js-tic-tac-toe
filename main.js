@@ -26,6 +26,11 @@ const gameController = (() => {
 
 
 const playerFactory = (name, token) => {
-  
+  return {
+    name,
+    token
+  };
+};
 
-}
+const player1 = playerFactory('Player 1', 'X');
+const player2 = playerFactory('Player 2', 'O');

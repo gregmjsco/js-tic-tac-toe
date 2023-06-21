@@ -1,5 +1,3 @@
-console.log("Test");
-console.log("Test again");
 
 
 //Gameboard Module 
@@ -33,6 +31,7 @@ const gameboard = (() => {
     };
     return {getBoard, placeToken, printBoard};
 })();
+
 
 function Cell(){
   let value = 0;

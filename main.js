@@ -6,6 +6,14 @@ const gameBoard = (() => {
     board.push('');
   }
 
+  let checkCell = cellToCheck => {
+    if (board[cellToCheck] == '') {
+      return true;
+    } else {
+      return false;
+    }
+  }; 
+
   return {
     board
   }
@@ -13,6 +21,7 @@ const gameBoard = (() => {
 })();
 
 console.log(gameBoard.board);
+console.log(gameBoard.checkCell(3));
 
 const playerFactory = (name, marker) => {
   return {
@@ -28,7 +37,7 @@ const game = (() => {
   let winnerDeclared = false;
   let remainingSpots = 9; 
 
-  console.log(player1);
+console.log(player1);
 console.log(player2);
 })();
 

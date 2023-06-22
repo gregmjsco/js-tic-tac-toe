@@ -1,50 +1,35 @@
+const gameBoard = (() => {
 
+  let board = [];
 
-//Gameboard Module 
-const gameboard = (() => {
+  for (i = 0; i < 9; i++){
+    board.push('');
+  }
 
-  const playerFactory = (name, mark, ai, turn) => {
-    return { name, mark, ai, turn};
+  return {
+    board
+  }
+
+})();
+
+console.log(gameBoard.board);
+
+const playerFactory = (name, marker) => {
+  return {
+    name, marker
   };
+};
 
-  const player1 = playerFactory('player1', 'X', false, true);
-  const player2 = playerFactory('player2', 'O', false, false)
+const game = (() => {
+  const player1 = playerFactory('Player One', 'X');
+  const player2 = playerFactory('Player Two', 'O');
 
-  const board = [
-    ['1', '2', '3'],
-    ['4', '5', '6'],
-    ['7', '8', '9']
-  ];
+  let activePlayer = player1;
+  let winnerDeclared = false;
+  let remainingSpots = 9; 
 
-  let winner = null; 
-
-  let turns = 0;
-
-  
-  
-
-     // Possible win combinations
-     const winCombos = [
-      [0,1,2],
-      [0,3,6],
-      [3,4,5],
-      [6,7,8],
-      [1,4,7],
-      [2,4,6],
-      [2,5,8],
-      [0,4,8]
-    ];
-
-    const getBoard = () => {
-      console.log(board);
-    };
-
-    const placeToken = (value, playerToken) => {
-        //logic to place token
-        board[value] = placeToken;
-    };
-
-    return {getBoard, placeToken};
+  console.log(player1);
+console.log(player2);
 })();
 
 

@@ -37,6 +37,10 @@ const game = (() => {
   let winnerDeclared = false;
   let remainingSpots = 9; 
 
+  while(winnerDeclared == false)
+    playTurn();
+    
+
 console.log(player1);
 console.log(player2);
 })();

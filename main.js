@@ -33,6 +33,9 @@ const playerFactory = (name, marker) => {
   };
 };
 
+
+
+
 const gameController = (() => {
   const player1 = playerFactory('Player One', 'X');
   const player2 = playerFactory('Player Two', 'O');
@@ -58,6 +61,9 @@ const gameController = (() => {
   }
   
 
+const changeTurn = () => {
+  activePlayer = activePlayer === player1 ? player2 : player1;
+};
 
 
 

@@ -1,21 +1,21 @@
 const gameBoard = (() => {
 
-  let board = [];
+  let boardArray = [];
 
   for (i = 0; i < 9; i++){
-    board.push('');
+    boardArray.push('');
   }
 
-  let checkCell = cellToCheck => {
-    if (board[cellToCheck] == '') {
-      return true;
-    } else {
-      return false;
-    }
-  }; 
+  const render = () => {
+    boardArray.forEach(myFunc);
+  };
+
+  function myFunc(item, index, arr) {
+    arr[index] = item;
+  }
 
   return {
-    board
+    boardArray, render
   };
 
 })();
@@ -24,9 +24,8 @@ const gameBoard = (() => {
 
 const playerFactory = (name, marker) => {
 
-  placeMarker = cell => {
-    cell = marker; 
-    return marker;
+  const placeMarker = (board, cell) => {
+    const gridID = board.cell
   };
 
   return {
@@ -38,7 +37,7 @@ const gameController = (() => {
   const player1 = playerFactory('Player One', 'X');
   const player2 = playerFactory('Player Two', 'O');
 
-  const board = gameBoard.board;
+  const board = gameBoard.boardArray;
 
   console.log(board[1]);
   console.log(board);

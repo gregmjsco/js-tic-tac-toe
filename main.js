@@ -16,30 +16,35 @@ const gameBoard = (() => {
 
   return {
     board
-  }
+  };
 
 })();
 
-console.log(gameBoard.board);
-console.log(gameBoard.checkCell(3));
+
 
 const playerFactory = (name, marker) => {
+
+  placeMarker = cell => {
+    cell = marker; 
+  };
+
   return {
-    name, marker
+    name, marker, placeMarker
   };
 };
 
-const game = (() => {
+const gameController = (() => {
   const player1 = playerFactory('Player One', 'X');
   const player2 = playerFactory('Player Two', 'O');
+
+  const board = gameBoard.board;
 
   let activePlayer = player1;
   let winnerDeclared = false;
   let remainingSpots = 9; 
 
-  while(winnerDeclared == false)
-    playTurn();
-    
+
+console.log(board);
 
 console.log(player1);
 console.log(player2);

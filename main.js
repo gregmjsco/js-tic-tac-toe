@@ -23,7 +23,9 @@ const playerFactory = (name, marker) => {
   let chosenCell;
   return {
     name, marker,
+  }
 };
+
 
 
 
@@ -32,7 +34,7 @@ const gameController = (() => {
   const player1 = playerFactory('Player One', 'X');
   const player2 = playerFactory('Player Two', 'O');
 
-  const board = gameBoard.boardArray;
+  const board = gameBoard;
 
 
   let activePlayer;
@@ -42,7 +44,8 @@ const gameController = (() => {
   const start = () => {
     winnerDeclared = false;
     activePlayer = player1;
-    board.render;
+    console.log(board);
+    board.render();
   }
 
   start();
@@ -52,9 +55,6 @@ const gameController = (() => {
   Switch active player
   repeat until winner found 
   */
-
-
-
 
 })();
 

@@ -20,9 +20,11 @@ const gameBoard = (() => {
 
 
 const playerFactory = (name, marker) => {
-  let chosenCell;
+  let chooseCell = () => {
+    prompt('Choose cell', 0);
+  };
   return {
-    name, marker,
+    name, marker,chooseCell
   }
 };
 
@@ -46,6 +48,7 @@ const gameController = (() => {
     activePlayer = player1;
     console.log(board);
     board.render();
+    activePlayer.chooseCell();
   }
 
   start();

@@ -6,9 +6,13 @@ const gameBoard = (() => {
     boardArray.push('');
   }
 
+  const render = () => {
+    console.log(boardArray);
+  }
+
 
   return {
-    boardArray
+    boardArray, render,
   };
 
 })();
@@ -17,11 +21,8 @@ const gameBoard = (() => {
 
 const playerFactory = (name, marker) => {
   let chosenCell;
-  const takeTurn = () => chosenCell = prompt('Choose a cell from 0 to 8');
-
   return {
-    name, marker, takeTurn, chosenCell
-  };
+    name, marker,
 };
 
 
@@ -34,12 +35,17 @@ const gameController = (() => {
   const board = gameBoard.boardArray;
 
 
-  let activePlayer = player1;
-  let winnerDeclared = false;
+  let activePlayer;
+  let winnerDeclared;
   let remainingSpots = 9; 
 
-  activePlayer.takeTurn();
-  console.log(activePlayer.chosenCell);
+  const start = () => {
+    winnerDeclared = false;
+    activePlayer = player1;
+    board.render;
+  }
+
+  start();
 
   /*
   Player takes turn to choose grid and place marker

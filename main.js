@@ -25,7 +25,7 @@ const playerFactory = (name, marker) => {
   let playerBoard = [];
   let chooseCell = () => {
     let x = prompt('Choose cell', 0);
-    playerBoard.push(x);
+    playerBoard.push(parseInt(x));
     return x; 
   };
   return {

@@ -21,7 +21,7 @@ const gameBoard = (() => {
 
 const playerFactory = (name, marker) => {
   let chooseCell = () => {
-    prompt('Choose cell', 0);
+    return prompt('Choose cell', 0);
   };
   return {
     name, marker,chooseCell
@@ -48,7 +48,11 @@ const gameController = (() => {
     activePlayer = player1;
     console.log(board);
     board.render();
-    activePlayer.chooseCell();
+    let turn = activePlayer.chooseCell();
+    console.log({turn});
+    board.boardArray[turn] = activePlayer.marker;
+    console.log(board.boardArray);
+
   }
 
   start();

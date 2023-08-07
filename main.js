@@ -54,10 +54,26 @@ const gameController = (() => {
     board.boardArray[turn - 1] = activePlayer.marker;
     remainingSpots -= 1;
     board.render();
+    if (activePlayer == player1) {
+      activePlayer = player2;
+    } else (
+      activePlayer = player1
+    );
+  };
+
+  const checkWin = () => {
+    activePlayer.playerBoard.sort();
     console.log(activePlayer);
-    activePlayer = player1 ? player2 : player1;
-    console.log(activePlayer);
+    for(let i = 0; i < winningCombinations.length; i++) {
+      for(let j = 0; j < winningCombinations[i].length; j++)
+      if (activePlayer.playerBoard.includes(winningCombinations[i][j]) && activePlayer.playerBoard == winningCombinations[i][j]) {
+        console.log(`${activePlayer} WINS`);
+        winnerDeclared = true;
+      } else return;
+    }
   }
+
+
 
   const start = () => {
     winnerDeclared = false;
@@ -67,6 +83,7 @@ const gameController = (() => {
     while (winnerDeclared == false) {
       if (remainingSpots > 0 && winnerDeclared != true) {
         playRound();  
+        checkWin();
        }
       }   
 

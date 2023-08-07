@@ -43,18 +43,31 @@ const gameController = (() => {
 
   let activePlayer;
   let winnerDeclared;
-  let remainingSpots = 9; 
+  let remainingSpots; 
+
+  const playRound = () => {
+    let turn;
+    if (remainingSpots > 0) {
+      turn = activePlayer.chooseCell();
+      board.boardArray[turn] = activePlayer.marker;
+      remainingSpots -= 1;
+      board.render();
+      activePlayer = player1 ? player2 : player1;
+      console.log(activePlayer);
+      turn = activePlayer.chooseCell();
+      board.boardArray[turn] = activePlayer.marker;
+      remainingSpots -= 1;
+      board.render();
+    }
+  }
 
   const start = () => {
     winnerDeclared = false;
     activePlayer = player1;
+    remainingSpots = 9;
     console.log(board);
     board.render();
-    let turn = activePlayer.chooseCell();
-    console.log({turn});
-    board.boardArray[turn] = activePlayer.marker;
-    console.log(board.boardArray);
-    board.render();
+    playRound();
 
   }
 

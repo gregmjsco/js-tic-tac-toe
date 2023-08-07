@@ -24,10 +24,12 @@ const gameBoard = (() => {
 const playerFactory = (name, marker) => {
   let playerBoard = [];
   let chooseCell = () => {
-    return prompt('Choose cell', 0);
+    let x = prompt('Choose cell', 0);
+    playerBoard.push(x);
+    return x; 
   };
   return {
-    name, marker,chooseCell, playerBoard,
+    name, marker,chooseCell, playerBoard, 
   }
 };
 
@@ -52,8 +54,6 @@ const gameController = (() => {
     if (remainingSpots > 0) {
       turn = activePlayer.chooseCell();
       board.boardArray[turn] = activePlayer.marker;
-      activePlayer.playerBoard.push(turn);
-      console.log(activePlayer.playerBoard);
       remainingSpots -= 1;
       board.render();
       console.log(activePlayer);
@@ -61,8 +61,6 @@ const gameController = (() => {
       console.log(activePlayer);
       turn = activePlayer.chooseCell();
       board.boardArray[turn] = activePlayer.marker;
-      activePlayer.playerBoard.push(turn);
-      
       remainingSpots -= 1;
       board.render();
     }
@@ -73,7 +71,6 @@ const gameController = (() => {
     activePlayer = player1;
     remainingSpots = 9;
     console.log(board);
-    board.render();
     playRound();
   }
 

@@ -44,6 +44,7 @@ const gameController = (() => {
   const board = gameBoard;
 
   let winningCombinations = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]];
+  console.log(winningCombinations.length);
 
   let activePlayer;
   let winnerDeclared;
@@ -65,13 +66,13 @@ const gameController = (() => {
     activePlayer.playerBoard.sort();
     console.log(activePlayer);
     for(let i = 0; i < winningCombinations.length; i++) {
-      for(let j = 0; j < winningCombinations[i].length; j++)
-      if (activePlayer.playerBoard.includes(winningCombinations[i][j]) && activePlayer.playerBoard == winningCombinations[i][j]) {
-        console.log(`${activePlayer} WINS`);
-        winnerDeclared = true;
-      } else return;
+      console.log(activePlayer.playerBoard);
+      console.log(winningCombinations[i]);
+      if (activePlayer.playerBoard.toString() === winningCombinations[i].toString()) {
+        console.log("WINNER")
+      }
     }
-  }
+  };
 
 
 

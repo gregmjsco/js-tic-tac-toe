@@ -7,7 +7,9 @@ const gameBoard = (() => {
   }
 
   const render = () => {
-    console.log(boardArray);
+    console.log(`| ${boardArray[0]} || ${boardArray[1]} || ${boardArray[2]} |
+| ${boardArray[3]} || ${boardArray[4]} || ${boardArray[5]} |
+| ${boardArray[6]} || ${boardArray[7]} || ${boardArray[8]} |`);
   }
 
 
@@ -52,6 +54,7 @@ const gameController = (() => {
     console.log({turn});
     board.boardArray[turn] = activePlayer.marker;
     console.log(board.boardArray);
+    board.render();
 
   }
 

@@ -69,7 +69,9 @@ const gameController = (() => {
       console.log(activePlayer.playerBoard);
       console.log(winningCombinations[i]);
       if (activePlayer.playerBoard.toString() === winningCombinations[i].toString()) {
-        console.log("WINNER")
+        console.log(`${activePlayer.name} is the WINNER`)
+        winnerDeclared = true;
+        break
       }
     }
   };
@@ -84,11 +86,11 @@ const gameController = (() => {
     while (winnerDeclared == false) {
       if (remainingSpots > 0 && winnerDeclared != true) {
         playRound();  
-        checkWin();
+        if (remainingSpots < 4) {
+          checkWin();
+        }
        }
       }   
-
-
   }
 
   start();

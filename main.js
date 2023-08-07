@@ -50,20 +50,13 @@ const gameController = (() => {
   let remainingSpots; 
 
   const playRound = () => {
-    let turn;
-    if (remainingSpots > 0) {
-      turn = activePlayer.chooseCell();
-      board.boardArray[turn] = activePlayer.marker;
-      remainingSpots -= 1;
-      board.render();
-      console.log(activePlayer);
-      activePlayer = player1 ? player2 : player1;
-      console.log(activePlayer);
-      turn = activePlayer.chooseCell();
-      board.boardArray[turn] = activePlayer.marker;
-      remainingSpots -= 1;
-      board.render();
-    }
+    let turn = activePlayer.chooseCell();
+    board.boardArray[turn - 1] = activePlayer.marker;
+    remainingSpots -= 1;
+    board.render();
+    console.log(activePlayer);
+    activePlayer = player1 ? player2 : player1;
+    console.log(activePlayer);
   }
 
   const start = () => {
@@ -71,7 +64,13 @@ const gameController = (() => {
     activePlayer = player1;
     remainingSpots = 9;
     console.log(board);
-    playRound();
+    while (winnerDeclared == false) {
+      if (remainingSpots > 0 && winnerDeclared != true) {
+        playRound();  
+       }
+      }   
+
+
   }
 
   start();

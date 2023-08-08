@@ -69,8 +69,8 @@ const gameController = (() => {
     activePlayer.playerBoard.sort();
     console.log(activePlayer);
     for(let i = 0; i < winningCombinations.length; i++) {
-      console.log(activePlayer.playerBoard);
-      console.log(winningCombinations[i]);
+      /*console.log(activePlayer.playerBoard);
+      console.log(winningCombinations[i]);*/
       if (activePlayer.playerBoard.toString() === winningCombinations[i].toString()) {
         console.log(`${activePlayer.name} is the WINNER`)
         winnerDeclared = true;

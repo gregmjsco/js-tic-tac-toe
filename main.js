@@ -55,12 +55,15 @@ const gameController = (() => {
     board.boardArray[turn - 1] = activePlayer.marker;
     remainingSpots -= 1;
     board.render();
+  };
+
+  const switchPlayer = () => {
     if (activePlayer == player1) {
       activePlayer = player2;
     } else (
       activePlayer = player1
     );
-  };
+  }
 
   const checkWin = () => {
     activePlayer.playerBoard.sort();
@@ -71,7 +74,7 @@ const gameController = (() => {
       if (activePlayer.playerBoard.toString() === winningCombinations[i].toString()) {
         console.log(`${activePlayer.name} is the WINNER`)
         winnerDeclared = true;
-        break
+        break;
       }
     }
   };
@@ -86,8 +89,12 @@ const gameController = (() => {
     while (winnerDeclared == false) {
       if (remainingSpots > 0 && winnerDeclared != true) {
         playRound();  
+        checkWin();
+        switchPlayer();
         if (remainingSpots < 4) {
           checkWin();
+        } else if (remainingSpots == 1) {
+          console.log('GAME IS A TIE');
         }
        }
       }   

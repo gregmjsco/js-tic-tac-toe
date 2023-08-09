@@ -16,7 +16,6 @@ const gameBoard = (() => {
   return {
     boardArray, render,
   };
-
 })();
 
 
@@ -36,7 +35,6 @@ const playerFactory = (name, marker) => {
 
 
 
-
 const gameController = (() => {
   const player1 = playerFactory('Player One', 'X');
   const player2 = playerFactory('Player Two', 'O');
@@ -44,7 +42,9 @@ const gameController = (() => {
   const board = gameBoard;
 
   let winningCombinations = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]];
-  console.log(winningCombinations.length);
+
+  let winningCombinationsStrings = winningCombinations.forEach((element) => console.log(element.toString()))
+  console.log(winningCombinationsStrings);
 
   let activePlayer;
   let winnerDeclared;
@@ -69,9 +69,7 @@ const gameController = (() => {
     activePlayer.playerBoard.sort();
     console.log(activePlayer);
     for(let i = 0; i < winningCombinations.length; i++) {
-      /*console.log(activePlayer.playerBoard);
-      console.log(winningCombinations[i]);*/
-      if (activePlayer.playerBoard.toString() === winningCombinations[i].toString()) {
+      if (winningCombinationsStrings.includes(activePlayer.playerBoard.toString)) {
         console.log(`${activePlayer.name} is the WINNER`)
         winnerDeclared = true;
         break;
@@ -91,9 +89,7 @@ const gameController = (() => {
         playRound();  
         checkWin();
         switchPlayer();
-        if (remainingSpots < 4) {
-          checkWin();
-        } else if (remainingSpots == 1) {
+        if (remainingSpots == 1) {
           console.log('GAME IS A TIE');
         }
        }

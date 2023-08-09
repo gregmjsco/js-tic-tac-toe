@@ -65,18 +65,10 @@ const gameController = (() => {
     );
   }
 
-  const even = (element) => element.toString === activePlayer.playerBoard.toString;
 
+  
   const checkWin = () => {
-    activePlayer.playerBoard.sort();
-    console.log(activePlayer);
-    for(let i = 0; i < winningCombinations.length; i++) {
-      if (winningCombinations.some(even)) {
-        console.log(`${activePlayer.name} is the WINNER`)
-        winnerDeclared = true;
-        break;
-      }
-    }
+
   };
 
 

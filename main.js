@@ -43,8 +43,8 @@ const gameController = (() => {
 
   let winningCombinations = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]];
 
-  let winningCombinationsStrings = winningCombinations.forEach((element) => console.log(element.toString()))
-  console.log(winningCombinationsStrings);
+  let winningCombinationsStrings = winningCombinations.forEach((element) => console.log(element.toString()));
+  console.log(winningCombinations);
 
   let activePlayer;
   let winnerDeclared;
@@ -69,7 +69,7 @@ const gameController = (() => {
     activePlayer.playerBoard.sort();
     console.log(activePlayer);
     for(let i = 0; i < winningCombinations.length; i++) {
-      if (winningCombinationsStrings.includes(activePlayer.playerBoard.toString)) {
+      if (winningCombinations.includes(activePlayer.playerBoard)) {
         console.log(`${activePlayer.name} is the WINNER`)
         winnerDeclared = true;
         break;

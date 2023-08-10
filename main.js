@@ -68,6 +68,13 @@ const gameController = (() => {
 
   
   const checkWin = () => {
+    let string = activePlayer.playerBoard.toString();
+
+    const hasValue = activePlayer.playerBoard.every(element => {
+      return winningCombinations.includes(element);
+    })
+
+    console.log(hasValue);
 
   };
 

@@ -69,12 +69,13 @@ const gameController = (() => {
   
   const checkWin = () => {
     let string = activePlayer.playerBoard.toString();
-
-    const hasValue = activePlayer.playerBoard.every(element => {
-      return winningCombinations.includes(element);
-    })
-
-    console.log(hasValue);
+    for(i = 0; i < winningCombinations.length; i++){
+      const hasValue = activePlayer.playerBoard.every(element => {
+        return winningCombinations[i] == element ? true : false;
+      })
+  
+      console.log(hasValue);
+    }
 
   };
 

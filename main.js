@@ -66,17 +66,25 @@ const gameController = (() => {
   }
 
 
+  function arrayAlreadyHasArray(arr, testArr){
+        for(var i = 0; i<arr.length; i++){
+            let checker = []
+            for(var j = 0; j<arr[i].length; j++){
+                if(arr[i][j] === testArr[j]){
+                    checker.push(true)
+                } else {
+                    checker.push(false)
+                }
+            }
+            if (checker.every(check => check === true)){
+                return true
+            }
+        }
+        return false
+    }
   
   const checkWin = () => {
-    let string = activePlayer.playerBoard.toString();
-    for(i = 0; i < winningCombinations.length; i++){
-      const hasValue = activePlayer.playerBoard.every(element => {
-        return winningCombinations[i] == element ? true : false;
-      })
-  
-      console.log(hasValue);
-    }
-
+    console.log(arrayAlreadyHasArray(winningCombinations, activePlayer.playerBoard));
   };
 
 

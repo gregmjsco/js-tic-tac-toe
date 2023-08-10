@@ -72,10 +72,13 @@ const gameController = (() => {
             for(var j = 0; j<arr[i].length; j++){
                 if(arr[i][j] === testArr[j]){
                     checker.push(true)
+                    
                 } else {
                     checker.push(false)
+                    
                 }
             }
+            console.log(checker)
             if (checker.every(check => check === true)){
                 return true
             }

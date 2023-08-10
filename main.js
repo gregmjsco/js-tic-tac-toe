@@ -84,7 +84,11 @@ const gameController = (() => {
     }
   
   const checkWin = () => {
-    console.log(arrayAlreadyHasArray(winningCombinations, activePlayer.playerBoard));
+    result = arrayAlreadyHasArray(winningCombinations, activePlayer.playerBoard);
+    console.log(result);
+    if (result == true) {
+      console.log(`${activePlayer.name} WINS`);
+    }
   };
 
 

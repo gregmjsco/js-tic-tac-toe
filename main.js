@@ -66,11 +66,9 @@ const gameController = (() => {
   }
 
 
-  function checkForWin(playerArray){
+  function checkWin(playerArray){
     for(let i = 0; i < winningCombinations.length; i++) {
       for(let j = 0; j < winningCombinations[i].length; j++) {
-        //console.log(winningCombinations[i][j]);
-        //console.log(playerArray);
         if (playerArray.includes(winningCombinations[i][0]) && playerArray.includes(winningCombinations[i][1]) && playerArray.includes(winningCombinations[i][2]) && playerArray.length >= 3) {
           return true;
       } else if (!playerArray.includes(winningCombinations[i][0]) && playerArray.includes(winningCombinations[i][1]) && playerArray.includes(winningCombinations[i][2]) && playerArray.length >= 3) {
@@ -81,46 +79,6 @@ const gameController = (() => {
       }
     }
   }
-  function arrayAlreadyHasArray(arr, playerArray){
-        for(var i = 0; i<arr.length; i++){
-            let checker = []
-            for(var j = 0; j<arr[i].length; j++){
-                if(arr[i][j] === playerArray[j]){
-                    checker.push(true)
-                    
-                } else {
-                    checker.push(false)
-                    
-                }
-            }
-            console.log(checker)
-            if (checker.every(check => check === true)){
-                return true
-            }
-        }
-        return false
-    }
-  
-  const checkWin = () => {
-    result = arrayAlreadyHasArray(winningCombinations, activePlayer.playerBoard);
-
-/*
-function checkForWin(whichPlayer){
-  - iterate over the winConditions array, each of which 
-    represents a single winCondition.
-    - For each winCondition, check if each value is present 
-      anywhere in the whichPlayer. 
-      - If it is not, drop out of the loop, this not a win
-      - If all the values of this winCondition are present in 
-        whichPlayer, then we can return a win!
-  - If we loop through all the winConditions and fall out the bottom, no win.
-}
-*/
-    console.log(result);
-    if (result == true) {
-      console.log(`${activePlayer.name} WINS`);
-    }
-  };
 
 
 
@@ -132,25 +90,19 @@ function checkForWin(whichPlayer){
     while (winnerDeclared == false) {
       if (remainingSpots > 0 && winnerDeclared != true) {
         playRound();  
-        if(checkForWin(activePlayer.playerBoard)){
+        if(checkWin(activePlayer.playerBoard)){
           console.log(`${activePlayer.name} WINS`)
         }
         switchPlayer();
         if (remainingSpots == 1) {
           console.log('GAME IS A TIE');
+          break
         }
        }
       }   
   }
 
   start();
-
-  /*
-  Player takes turn to choose grid and place marker
-  Switch active player
-  repeat until winner found 
-  */
-
 })();
 
 

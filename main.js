@@ -68,9 +68,17 @@ const gameController = (() => {
 
   function checkForWin(playerArray){
     for(let i = 0; i < winningCombinations.length; i++) {
-      winningCombinations[i].forEach(cell => {
-        if()
-      })
+      for(let j = 0; j < winningCombinations[i].length; j++) {
+        //console.log(winningCombinations[i][j]);
+        //console.log(playerArray);
+        if (playerArray.includes(winningCombinations[i][0]) && playerArray.includes(winningCombinations[i][1]) && playerArray.includes(winningCombinations[i][2]) && playerArray.length >= 3) {
+          return true;
+      } else if (!playerArray.includes(winningCombinations[i][0]) && playerArray.includes(winningCombinations[i][1]) && playerArray.includes(winningCombinations[i][2]) && playerArray.length >= 3) {
+          break;
+      } else {
+          false;
+      }
+      }
     }
   }
   function arrayAlreadyHasArray(arr, playerArray){
@@ -124,7 +132,9 @@ function checkForWin(whichPlayer){
     while (winnerDeclared == false) {
       if (remainingSpots > 0 && winnerDeclared != true) {
         playRound();  
-        checkWin();
+        if(checkForWin(activePlayer.playerBoard)){
+          console.log(`${activePlayer.name} WINS`)
+        }
         switchPlayer();
         if (remainingSpots == 1) {
           console.log('GAME IS A TIE');

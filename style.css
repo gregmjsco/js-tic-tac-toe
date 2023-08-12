@@ -26,6 +26,11 @@ header {
     height: 100px;
     background-color: cadetblue;
     border: 1px solid black;
+}
 
-    
+.circle {
+    height: 90px;
+    width: 90px;
+    border-radius: 50%;
+    border: 10px solid red;
 }

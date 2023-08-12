@@ -1,7 +1,9 @@
 const gameBoard = (() => {
 
+  const gameBoard = document.querySelector("#gameboard")
   let boardArray = [];
 
+  
   for (i = 0; i < 9; i++){
     boardArray.push('');
   }

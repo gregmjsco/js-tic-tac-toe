@@ -8,10 +8,12 @@ const gameBoard = (() => {
 
   const render = () => {
     console.log(boardArray)
-     boardArray.forEach((element) => {
+     boardArray.forEach((element, index) => {
+      console.log(element)
+      console.log(index)
       if (element = "X"){
         const div = document.createElement('div');
-        parent.appendChild(div)
+        element.appendChild(div)
         div.setAttribute('class', 'cross');
       } else if (element = "O") {
         const div = document.createElement('div');
@@ -58,7 +60,7 @@ const gameController = (() => {
 
   const playRound = () => {
     let turn = activePlayer.chooseCell();
-    board.boardArray[turn - 1].setAttribute('class', activePlayer.marker)
+    board.boardArray[turn - 1].classList.add(activePlayer.marker)
     remainingSpots -= 1;
     board.render();
   };

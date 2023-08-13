@@ -1,17 +1,25 @@
 const gameBoard = (() => {
 
   const gameBoard = document.querySelector("#gameboard")
-  let boardArray = [];
-
+  const boardArray = Array.from(document.querySelectorAll("cell"));
+  console.log(boardArray)
   
   for (i = 0; i < 9; i++){
     boardArray.push('');
   }
 
   const render = () => {
-    console.log(`| ${boardArray[0]} || ${boardArray[1]} || ${boardArray[2]} |
-| ${boardArray[3]} || ${boardArray[4]} || ${boardArray[5]} |
-| ${boardArray[6]} || ${boardArray[7]} || ${boardArray[8]} |`);
+     boardArray.forEach((element) => {
+      if (element = "X"){
+        const div = document.createElement('div');
+        element.appendChild(div);
+        div.setAttribute('class', 'cross');
+      } else if (element = "O") {
+        const div = document.createElement('div');
+        element.appendChild(div);
+        div.setAttribute('class', 'circle');
+      }
+     })
   }
 
 
@@ -44,8 +52,6 @@ const gameController = (() => {
 
   let winningCombinations = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]];
 
-  let winningCombinationsStrings = winningCombinations.forEach((element) => console.log(element.toString()));
-  console.log(winningCombinations);
 
   let activePlayer;
   let winnerDeclared;
@@ -103,6 +109,7 @@ const gameController = (() => {
       }   
   }
 
+  start();
  
 })();
 

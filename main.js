@@ -11,10 +11,11 @@ const gameBoard = (() => {
      boardArray.forEach((element, index) => {
       console.log(element)
       console.log(index)
-      if (element = "X"){
+      if (element.classList.contains("X")){
         const div = document.createElement('div');
-        element.appendChild(div)
-        div.setAttribute('class', 'cross');
+        div.classList.add("cross")
+        console.log(element.classList)
+        
       } else if (element = "O") {
         const div = document.createElement('div');
         element.appendChild(div);

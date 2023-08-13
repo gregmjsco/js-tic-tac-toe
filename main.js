@@ -58,7 +58,7 @@ const gameController = (() => {
 
   const playRound = () => {
     let turn = activePlayer.chooseCell();
-    board.boardArray[turn - 1] = activePlayer.marker;
+    board.boardArray[turn - 1].setAttribute('class', activePlayer.marker)
     remainingSpots -= 1;
     board.render();
   };

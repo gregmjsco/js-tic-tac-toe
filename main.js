@@ -1,26 +1,25 @@
 const gameBoard = (() => {
 
   const gameBoard = document.querySelector("#gameboard")
-  const boardArray = Array.from(document.querySelectorAll("cell"));
+  const boardArray = Array.from(document.querySelectorAll(".cell"));
   console.log(boardArray)
   
-  for (i = 0; i < 9; i++){
-    boardArray.push('');
-  }
+
 
   const render = () => {
+    console.log(boardArray)
      boardArray.forEach((element) => {
       if (element = "X"){
         const div = document.createElement('div');
-        element.appendChild(div);
+        parent.appendChild(div)
         div.setAttribute('class', 'cross');
       } else if (element = "O") {
         const div = document.createElement('div');
         element.appendChild(div);
         div.setAttribute('class', 'circle');
       }
-     })
-  }
+     });
+  };
 
 
   return {

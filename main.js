@@ -4,7 +4,12 @@ const gameBoard = (() => {
   const boardArray = Array.from(document.querySelectorAll(".cell"));
   console.log(boardArray)
   
+  
 
+  function addGo(e) {
+    const goDisplay = document.createElement('div')
+
+  }
 
   const render = () => {
     console.log(boardArray)
@@ -13,13 +18,13 @@ const gameBoard = (() => {
       console.log(index)
       if (element.classList.contains("X")){
         const div = document.createElement('div');
-        div.classList.add("cross")
-        console.log(element.classList)
+        div.classList.add("cross");
+        boardArray[index].appendChild(div);
         
       } else if (element = "O") {
         const div = document.createElement('div');
-        element.appendChild(div);
-        div.setAttribute('class', 'circle');
+        div.classList.add('circle');
+        boardArray[index].appendChild(div);
       }
      });
   };

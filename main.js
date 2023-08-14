@@ -16,16 +16,37 @@ const gameBoard = (() => {
       cell.classList.add(gameController.activePlayer.marker);
       gameController.activePlayer.playerBoard.push(e.target.dataset.value);
       gameController.remainingSpots -= 1;
+      console.log(gameController.remainingSpots)
       gameController.checkWin(gameController.activePlayer.playerBoard);
+
+      boardArray.forEach((element, index) => {
+        console.log(element)
+        console.log(index)
+        if (element.classList.contains("X")){
+          const div = document.createElement('div');
+          div.classList.add("cross");
+          boardArray[index].appendChild(div);
+        
+          
+        } else if (element.classList.contains("O")) {
+          const div = document.createElement('div');
+          div.classList.add('circle');
+          boardArray[index].appendChild(div);
+          return
+        }
+       });
+
       if (gameController.winnerDeclared == false) {
         if (gameController.remainingSpots > 0) {
           gameController.switchPlayer();
+          console.log(gameController.activePlayer.name)
         } else if (gameController.remainingSpots == 0) {
           console.log("TIE")
         }
       }
     })
   })
+  
   
 
   console.log(boardArray)
@@ -34,22 +55,7 @@ const gameBoard = (() => {
 
   /*const render = () => {
     console.log(boardArray)
-     boardArray.forEach((element, index) => {
-      console.log(element)
-      console.log(index)
-      if (element.classList.contains("X")){
-        const div = document.createElement('div');
-        div.classList.add("cross");
-        boardArray[index].appendChild(div);
-      
-        
-      } else if (element = "O") {
-        const div = document.createElement('div');
-        div.classList.add('circle');
-        boardArray[index].appendChild(div);
-        return
-      }
-     });
+     
   };*/
 
 
@@ -93,6 +99,7 @@ const gameController = (() => {
       for(let j = 0; j < winningCombinations[i].length; j++) {
         if (playerArray.includes(winningCombinations[i][0]) && playerArray.includes(winningCombinations[i][1]) && playerArray.includes(winningCombinations[i][2]) && playerArray.length >= 3) {
           winnerDeclared = true;
+          console.log(`${activePlayer.name} WINS`)
           return true;
       } else if (!playerArray.includes(winningCombinations[i][0]) && playerArray.includes(winningCombinations[i][1]) && playerArray.includes(winningCombinations[i][2]) && playerArray.length >= 3) {
           break;

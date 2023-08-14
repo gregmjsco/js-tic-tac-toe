@@ -1,15 +1,13 @@
 const gameBoard = (() => {
 
-  const gameBoard = document.querySelector("#gameboard")
   const boardArray = Array.from(document.querySelectorAll(".cell"));
+  
+
+  
+
   console.log(boardArray)
   
-  
 
-  function addGo(e) {
-    const goDisplay = document.createElement('div')
-
-  }
 
   const render = () => {
     console.log(boardArray)
@@ -57,6 +55,10 @@ const gameController = (() => {
 
   const board = gameBoard;
 
+  const cells = document.querySelectorAll('.cell');
+
+  console.log(cells); 
+
   let winningCombinations = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]];
 
 
@@ -64,12 +66,16 @@ const gameController = (() => {
   let winnerDeclared;
   let remainingSpots; 
 
-  const playRound = () => {
-    let turn = activePlayer.chooseCell();
+  const playRound = e => {
+    let turn = e.target.value;
     board.boardArray[turn - 1].classList.add(activePlayer.marker)
     remainingSpots -= 1;
     board.render();
   };
+
+  for(let cell of cells) {
+    cell.addEventListener("click", playRound(e));
+  }
 
   const switchPlayer = () => {
     if (activePlayer == player1) {

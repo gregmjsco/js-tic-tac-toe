@@ -1,8 +1,31 @@
+const playerFactory = (name, marker) => {
+  let playerBoard = [];
+  return {
+    name, marker, playerBoard, 
+  }
+};
+
 const gameBoard = (() => {
 
   const boardArray = Array.from(document.querySelectorAll(".cell"));
   
+  let cells = document.querySelectorAll(".cell");
 
+  cells.forEach((cell, index) => {
+    cell.addEventListener('click', (e) => {
+      cell.classList.add(gameController.activePlayer.marker);
+      gameController.activePlayer.playerBoard.push(e.target.dataset.value);
+      gameController.remainingSpots -= 1;
+      gameController.checkWin(gameController.activePlayer.playerArray);
+      if (gameController.winnerDeclared == false) {
+        if (gameController.remainingSpots > 0) {
+          gameController.switchPlayer();
+        } else if (gameController.remainingSpots == 0) {
+          console.log("TIE")
+        }
+      }
+    })
+  })
   
 
   console.log(boardArray)
@@ -18,11 +41,13 @@ const gameBoard = (() => {
         const div = document.createElement('div');
         div.classList.add("cross");
         boardArray[index].appendChild(div);
+      
         
       } else if (element = "O") {
         const div = document.createElement('div');
         div.classList.add('circle');
         boardArray[index].appendChild(div);
+        return
       }
      });
   };
@@ -34,18 +59,6 @@ const gameBoard = (() => {
 })();
 
 
-
-const playerFactory = (name, marker) => {
-  let playerBoard = [];
-  let chooseCell = () => {
-    let x = prompt('Choose cell', 0);
-    playerBoard.push(parseInt(x));
-    return x; 
-  };
-  return {
-    name, marker,chooseCell, playerBoard, 
-  }
-};
 
 
 
@@ -64,10 +77,6 @@ const gameController = (() => {
   let winnerDeclared;
   let remainingSpots; 
 
-  const playRound = e => {
-    
-  };
-
 
   const switchPlayer = () => {
     if (activePlayer == player1) {
@@ -82,6 +91,7 @@ const gameController = (() => {
     for(let i = 0; i < winningCombinations.length; i++) {
       for(let j = 0; j < winningCombinations[i].length; j++) {
         if (playerArray.includes(winningCombinations[i][0]) && playerArray.includes(winningCombinations[i][1]) && playerArray.includes(winningCombinations[i][2]) && playerArray.length >= 3) {
+          winnerDeclared = true;
           return true;
       } else if (!playerArray.includes(winningCombinations[i][0]) && playerArray.includes(winningCombinations[i][1]) && playerArray.includes(winningCombinations[i][2]) && playerArray.length >= 3) {
           break;
@@ -99,33 +109,23 @@ const gameController = (() => {
     activePlayer = player1;
     remainingSpots = 9;
 
-    const cells = document.querySelectorAll('.cell');
-  console.log(cells); 
-  cells.forEach((cell) => {
-    // and for each one we add a 'click' listener
-    cell.addEventListener('click', (e) => {
-    let turn = e.target.dataset.value;
-    board.boardArray[turn - 1].classList.add(activePlayer.marker)
-    remainingSpots -= 1;
-    board.render();
-    switchPlayer();
-    });
-  });
+  
+  };
 
-      if (remainingSpots > 0 && winnerDeclared != true) {
-        if(checkWin(activePlayer.playerBoard)){
-          console.log(`${activePlayer.name} WINS`)
-        }
-        
-        if (remainingSpots == 1) {
-          console.log('GAME IS A TIE');
-        }
-       }
+  
+
       
-  }
+      
 
   start();
- 
+  return {
+    activePlayer,
+    winnerDeclared,
+    remainingSpots,
+    switchPlayer,
+    checkWin,
+
+  }
 })();
 
 

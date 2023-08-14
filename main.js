@@ -55,9 +55,7 @@ const gameController = (() => {
 
   const board = gameBoard;
 
-  const cells = document.querySelectorAll('.cell');
-
-  console.log(cells); 
+  
 
   let winningCombinations = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]];
 
@@ -67,15 +65,9 @@ const gameController = (() => {
   let remainingSpots; 
 
   const playRound = e => {
-    let turn = e.target.value;
-    board.boardArray[turn - 1].classList.add(activePlayer.marker)
-    remainingSpots -= 1;
-    board.render();
+    
   };
 
-  for(let cell of cells) {
-    cell.addEventListener("click", playRound(e));
-  }
 
   const switchPlayer = () => {
     if (activePlayer == player1) {
@@ -106,20 +98,30 @@ const gameController = (() => {
     winnerDeclared = false;
     activePlayer = player1;
     remainingSpots = 9;
-    console.log(board);
-    while (winnerDeclared == false) {
+
+    const cells = document.querySelectorAll('.cell');
+  console.log(cells); 
+  cells.forEach((cell) => {
+    // and for each one we add a 'click' listener
+    cell.addEventListener('click', (e) => {
+    let turn = e.target.dataset.value;
+    board.boardArray[turn - 1].classList.add(activePlayer.marker)
+    remainingSpots -= 1;
+    board.render();
+    switchPlayer();
+    });
+  });
+
       if (remainingSpots > 0 && winnerDeclared != true) {
-        playRound();  
         if(checkWin(activePlayer.playerBoard)){
           console.log(`${activePlayer.name} WINS`)
         }
-        switchPlayer();
+        
         if (remainingSpots == 1) {
           console.log('GAME IS A TIE');
-          break
         }
        }
-      }   
+      
   }
 
   start();

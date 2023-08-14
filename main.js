@@ -16,7 +16,7 @@ const gameBoard = (() => {
       cell.classList.add(gameController.activePlayer.marker);
       gameController.activePlayer.playerBoard.push(e.target.dataset.value);
       gameController.remainingSpots -= 1;
-      gameController.checkWin(gameController.activePlayer.playerArray);
+      gameController.checkWin(gameController.activePlayer.playerBoard);
       if (gameController.winnerDeclared == false) {
         if (gameController.remainingSpots > 0) {
           gameController.switchPlayer();
@@ -32,7 +32,7 @@ const gameBoard = (() => {
   
 
 
-  const render = () => {
+  /*const render = () => {
     console.log(boardArray)
      boardArray.forEach((element, index) => {
       console.log(element)
@@ -50,11 +50,12 @@ const gameBoard = (() => {
         return
       }
      });
-  };
+  };*/
 
 
   return {
-    boardArray, render,
+    boardArray, 
+    //render,
   };
 })();
 
@@ -73,9 +74,9 @@ const gameController = (() => {
   let winningCombinations = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]];
 
 
-  let activePlayer;
-  let winnerDeclared;
-  let remainingSpots; 
+  let winnerDeclared = false;
+  let activePlayer = player1;
+  let remainingSpots = 9;
 
 
   const switchPlayer = () => {
@@ -102,22 +103,10 @@ const gameController = (() => {
     }
   }
 
-
-
-  const start = () => {
-    winnerDeclared = false;
-    activePlayer = player1;
-    remainingSpots = 9;
-
-  
-  };
-
-  
-
       
-      
+ 
 
-  start();
+
   return {
     activePlayer,
     winnerDeclared,

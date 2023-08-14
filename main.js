@@ -22,13 +22,13 @@ const gameBoard = (() => {
       boardArray.forEach((element, index) => {
         console.log(element)
         console.log(index)
-        if (element.classList.contains("X")){
+        if (element.classList.contains("X") && element.childNodes.length == 0){
           const div = document.createElement('div');
           div.classList.add("cross");
           boardArray[index].appendChild(div);
         
           
-        } else if (element.classList.contains("O")) {
+        } else if (element.classList.contains("O") && element.childNodes.length == 0) {
           const div = document.createElement('div');
           div.classList.add('circle');
           boardArray[index].appendChild(div);

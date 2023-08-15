@@ -47,7 +47,7 @@ header {
 }
 
 .gameboard > div:hover {
-    background-color: crimson;
+    background-color:lightcoral;
 }
 
 .circle {

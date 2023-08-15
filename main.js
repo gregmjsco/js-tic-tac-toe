@@ -35,16 +35,16 @@ const gameBoard = (() => {
        });
 
        gameController.checkWin(gameController.activePlayer.playerBoard);
+       if(gameController.winnerDeclared == true){
+        cells.forEach((cell, index) => {
+          cell.style.pointerEvents = 'none';
+        })
+      }
 
        if (gameController.winnerDeclared == false) {
         if(gameController.remainingSpots > 0) {
           gameController.alertNextPlayer();
           gameController.switchPlayer();
-          if(gameController.winnerDeclared == true){
-            cells.forEach((cell, index) => {
-              cell.style.pointerEvents = 'none';
-            })
-          }
         } else if (gameController.remainingSpots == 0) {
           gameController.showTie()
         }

@@ -104,9 +104,7 @@ const gameController = (() => {
           return true;
       } else if (!playerArray.includes(winningCombinations[i][0]) && playerArray.includes(winningCombinations[i][1]) && playerArray.includes(winningCombinations[i][2]) && playerArray.length >= 3) {
           break;
-      } else {
-          return false;
-      }
+      } 
       }
     }
   }

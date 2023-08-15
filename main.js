@@ -13,7 +13,6 @@ const gameBoard = (() => {
 
   cells.forEach((cell, index) => {
     cell.addEventListener('click', (e) => {
-      //console.log(`START ACTIVE PLAYER IS ${gameController.activePlayer.name}`)
       cell.classList.add(gameController.activePlayer.marker);
       gameController.activePlayer.playerBoard.push(e.target.dataset.value);
       gameController.remainingSpots -= 1;
@@ -35,17 +34,22 @@ const gameBoard = (() => {
         }
        });
 
+       gameController.checkWin(gameController.activePlayer.playerBoard);
 
        if (gameController.winnerDeclared == false) {
         if(gameController.remainingSpots > 0) {
-          if(gameController.checkWin(gameController.activePlayer.playerBoard)){
-            console.log(`${gameController.activePlayer.name} WINS`)
-            console.log('WINNER')
-          }
+          gameController.alertNextPlayer();
           gameController.switchPlayer();
-        } else if (gameController.remainingSpots == 0)
-        console.log('TIE')
+          if(gameController.winnerDeclared == true){
+            cells.forEach((cell, index) => {
+              cell.style.pointerEvents = 'none';
+            })
+          }
+        } else if (gameController.remainingSpots == 0) {
+          gameController.showTie()
+        }
        }
+
 
       // console.log(`END ACTIVE PLAYER IS ${gameController.activePlayer.name}`)
       }
@@ -86,6 +90,8 @@ const gameController = (() => {
   let activePlayer = player1;
   let remainingSpots = 9;
 
+  let info = document.querySelector('.info'); // display winner/tie
+    let playerName = document.querySelector('.player-name'); // purpose: alert player turn
 
   function switchPlayer() {
     //console.log("INSIDE SWITCHPLAYER")
@@ -95,12 +101,18 @@ const gameController = (() => {
     //console.log(activePlayer.name)
   }
 
+  function alertNextPlayer() {
+    this.activePlayer === player1 ? playerName.textContent = 'Player 2' : playerName.textContent = 'Player 1';
+}
+
 
   function checkWin(playerArray){
     playerArray.sort();
     for(let i = 0; i < winningCombinations.length; i++) {
       for(let j = 0; j < winningCombinations[i].length; j++) {
         if (playerArray.includes(winningCombinations[i][0]) && playerArray.includes(winningCombinations[i][1]) && playerArray.includes(winningCombinations[i][2]) && playerArray.length >= 3) {
+          info.innerHTML = `<b>${this.activePlayer.name} wins!</b>`;
+          this.winnerDeclared = true;
           return true;
       } else if (!playerArray.includes(winningCombinations[i][0]) && playerArray.includes(winningCombinations[i][1]) && playerArray.includes(winningCombinations[i][2]) && playerArray.length >= 3) {
           break;
@@ -109,13 +121,19 @@ const gameController = (() => {
     }
   }
 
+  function showTie() {
+    info.innerHTML = "<b>Tie game!</b>";
+}
+
   return {
     activePlayer,
     winnerDeclared,
     remainingSpots,
     switchPlayer,
     checkWin,
-    winningCombinations
+    winningCombinations,
+    alertNextPlayer,
+    showTie
   }
 })();
 

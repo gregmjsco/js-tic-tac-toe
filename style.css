@@ -6,11 +6,25 @@
     border: 1px, solid, red;
 }
 
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
 header {
+    font-weight: 700;
+    font-size: 4rem;
     text-align: center;
     margin: 0 auto;
     padding-bottom: 50px;
 }
+
+.info {
+    font-size: 2rem;
+    margin: 0 auto;
+    text-align: center;
+    padding-bottom: 20px;
+}
+
 
 .gameboard {
     display: flex;
@@ -26,6 +40,14 @@ header {
     height: 100px;
     background-color: cadetblue;
     border: 1px solid black;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.gameboard > div:hover {
+    background-color: crimson;
 }
 
 .circle {
